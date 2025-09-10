@@ -28,8 +28,8 @@ export const findNearestColor = (
   let normalizedHex: string;
   try {
     normalizedHex = normalizeHex(inputHex);
-  } catch {
-    return null;
+  } catch (e) {
+    throw new Error(`Invalid color format. Please provide a valid hex color.`);
   }
 
   const list = colorList ?? getColorListWithLab();
@@ -73,4 +73,57 @@ export const findNearestColor = (
     hex: nearest.hex,
     distance: minDiff,
   };
+};
+
+export interface FindAllClosestColorsOptions extends FindNearestColorOptions {
+  /**
+   * The number of closest colors to return. Defaults to 5.
+   * This option is ignored if `threshold` is set.
+   */
+  count?: number;
+  /**
+   * The maximum distance for a color to be considered "close".
+   * If set, this option takes precedence over `count`.
+   */
+  threshold?: number;
+}
+
+/**
+ * Finds a list of the closest human-readable color names for a given hex color.
+ *
+ * @param inputHex The color to match, as a hex string (e.g., `#RRGGBB`).
+ * @param options Options to control the matching logic.
+ * @returns An array of `ColorMatch` objects, sorted by distance.
+ */
+export const findAllClosestColors = (
+  inputHex: string,
+  options: FindAllClosestColorsOptions = {}
+): ColorMatch[] => {
+  const { formula = "76", colorList, count = 5, threshold } = options;
+
+  let normalizedHex: string;
+  try {
+    normalizedHex = normalizeHex(inputHex);
+  } catch (e) {
+    throw new Error(`Invalid color format. Please provide a valid hex color.`);
+  }
+
+  const list = colorList ?? getColorListWithLab();
+  const deltaE = deltaEFormulas[formula];
+
+  const targetLab = rgbToLab(hexToRgb(normalizedHex));
+
+  const allMatches: ColorMatch[] = list.map((color) => ({
+    name: color.name,
+    hex: color.hex,
+    distance: deltaE(targetLab, color.lab),
+  }));
+
+  allMatches.sort((a, b) => a.distance - b.distance);
+
+  if (threshold !== undefined) {
+    return allMatches.filter((match) => match.distance <= threshold);
+  }
+
+  return allMatches.slice(0, count);
 };

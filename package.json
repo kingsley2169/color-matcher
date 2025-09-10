@@ -1,14 +1,14 @@
 {
   "name": "@a.r.i_eze/color-matcher",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A module to find the closest human-readable name for any color using Lab color space and Delta-E algorithm.",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     }
   },
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/kingsley2169/color-matcher#readme",
   "sideEffects": false,
   "scripts": {
+    "prepublishOnly": "npm run build",
     "build": "tsup",
     "test": "vitest"
   },

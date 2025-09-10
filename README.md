@@ -99,6 +99,31 @@ console.log(match.name); // "My Brand Red"
 
 ## API Reference
 
+### `findAllClosestColors(inputHex, options?)`
+
+Finds a list of colors that are close to the input color. Returns an array of `ColorMatch` objects, sorted by distance (closest first).
+
+-   `inputHex: string`: The color to match, as a hex string (e.g., `#RRGGBB`).
+-   `options?: FindAllClosestColorsOptions`:
+    -   `count?: number`: The number of closest colors to return. Defaults to `5`. This option is ignored if `threshold` is set.
+    -   `threshold?: number`: The maximum distance for a color to be considered "close". If set, this option takes precedence over `count`.
+    -   `formula?: '76' | '94' | '2000'`: The Delta E formula to use. Defaults to `'76'`.
+    -   `colorList?: ColorWithLab[]`: A custom array of colors to match against.
+
+#### Example
+
+```javascript
+import { findAllClosestColors } from 'color-matcher';
+
+// Get the top 3 closest colors
+const top3 = findAllClosestColors('#FF1A00', { count: 3, formula: '2000' });
+console.log(top3);
+
+// Get all colors within a distance of 10
+const withinThreshold = findAllClosestColors('#008081', { threshold: 10, formula: '2000' });
+console.log(withinThreshold.map(c => c.name));
+```
+
 ### `findNearestColor(inputHex, options?)`
 
 -   `inputHex: string`: The color to match, as a hex string (e.g., `#RRGGBB` or `RRGGBB`).
@@ -106,7 +131,7 @@ console.log(match.name); // "My Brand Red"
     -   `formula?: '76' | '94' | '2000'`: The Delta E formula to use. Defaults to `'76'`.
     -   `colorList?: ColorWithLab[]`: A custom array of colors to match against. Defaults to the built-in `ColorListWithLab`.
 
-Returns a `ColorMatch` object or `null` if the input is invalid.
+Returns a `ColorMatch` object. Throws an error if the input color format is invalid.
 
 ### `ColorMatch` Type
 
