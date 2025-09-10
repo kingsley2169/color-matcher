@@ -1,0 +1,15 @@
+# Config files
+.DS_Store
+.vscode/
+.idea/
+*.log
+tsup.config.ts
+tsconfig.json
+vitest.config.ts
+
+# Source and tests
+src/
+tests/
+
+# Dependencies
+node_modules/

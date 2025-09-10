@@ -1,0 +1,25 @@
+{
+	// Visit https://aka.ms/tsconfig to read more about this file
+	"compilerOptions": {
+		// Output
+		"outDir": "dist",
+		"sourceMap": true,
+		"declaration": true,
+		"declarationMap": true,
+
+		// Module system
+		"target": "ESNext",
+		"module": "NodeNext",        
+		"moduleResolution": "NodeNext",  
+		"verbatimModuleSyntax": true,
+
+		// Type safety
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"exactOptionalPropertyTypes": true,
+		"isolatedModules": true,
+		"skipLibCheck": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"],
+}

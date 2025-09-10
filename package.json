@@ -1,0 +1,48 @@
+{
+  "name": "@a.r.i_eze/color-matcher",
+  "version": "1.0.0",
+  "description": "A module to find the closest human-readable name for any color using Lab color space and Delta-E algorithm.",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kingsley2169/color-matcher.git"
+  },
+  "bugs": "https://github.com/kingsley2169/color-matcher/issues",
+  "homepage": "https://github.com/kingsley2169/color-matcher#readme",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest"
+  },
+  "type": "module",
+  "keywords": [
+    "color",
+    "lab",
+    "deltaE",
+    "nearest-color",
+    "color-matcher",
+    "hex",
+    "rgb",
+    "converter"
+  ],
+  "author": "A.R.I Eze",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
