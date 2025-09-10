@@ -11,8 +11,12 @@ export type { RGB, Lab } from "./conversions.js";
 export { deltaE76, deltaE94, deltaE2000 } from "./deltaE.js";
 
 // Finder
-export { findNearestColor } from "./finder.js";
-export type { FindNearestColorOptions, ColorMatch } from "./finder.js";
+export { findNearestColor, findAllClosestColors } from "./finder.js";
+export type {
+  FindNearestColorOptions,
+  FindAllClosestColorsOptions,
+  ColorMatch,
+} from "./finder.js";
 
 // Color list
 export { ColorList, getColorListWithLab } from "./colorsList.js";
