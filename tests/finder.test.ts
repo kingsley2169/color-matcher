@@ -44,9 +44,10 @@ describe("findNearestColor", () => {
     expect(match?.distance).toBeGreaterThan(0);
   });
 
-  it("should return null for invalid hex", () => {
-    expect(findNearestColor("#GGGGGG")).toBeNull();
-    expect(findNearestColor("12345")).toBeNull();
+  it("should throw an error for invalid hex", () => {
+    expect(() => findNearestColor("#GGGGGG")).toThrow();
+    expect(() => findNearestColor("12345")).toThrow();
+    expect(() => findNearestColor('invalid-color')).toThrow('Invalid color format. Please provide a valid hex color.');
   });
 
   it("should use a custom color list when provided", () => {
@@ -57,5 +58,10 @@ describe("findNearestColor", () => {
 
     const match = findNearestColor("#EE0000", { colorList: customList });
     expect(match?.name).toBe("My Red");
+  });
+
+  it("should return null when an empty color list is provided", () => {
+    const match = findNearestColor("#FF0000", { colorList: [] });
+    expect(match).toBeNull();
   });
 });

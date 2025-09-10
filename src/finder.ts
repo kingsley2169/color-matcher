@@ -44,12 +44,7 @@ export const findNearestColor = (
     };
   }
 
-  let targetLab: Lab;
-  try {
-    targetLab = rgbToLab(hexToRgb(normalizedHex));
-  } catch {
-    return null;
-  }
+  const targetLab: Lab = rgbToLab(hexToRgb(normalizedHex));
 
   let nearest: ColorWithLab | null = null;
   let minDiff = Infinity;

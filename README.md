@@ -131,7 +131,7 @@ console.log(withinThreshold.map(c => c.name));
     -   `formula?: '76' | '94' | '2000'`: The Delta E formula to use. Defaults to `'76'`.
     -   `colorList?: ColorWithLab[]`: A custom array of colors to match against. Defaults to the built-in `ColorListWithLab`.
 
-Returns a `ColorMatch` object. Throws an error if the input color format is invalid.
+Returns a `ColorMatch` object, or `null` if no match is found (e.g. with an empty `colorList`). Throws an error if the input color format is invalid.
 
 ### `ColorMatch` Type
 
